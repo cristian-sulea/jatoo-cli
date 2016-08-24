@@ -2,6 +2,7 @@ package jatoo.cli;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.NotDirectoryException;
 
@@ -176,6 +177,10 @@ public class jatoo {
       final File out = new File(line.getOptionValue("out"));
       final boolean overwrite = line.hasOption("overwrite");
 
+      if (!in.exists()) {
+        throw new FileNotFoundException("input does not exists: " + in.getAbsolutePath());
+      }
+
       if (!out.exists()) {
         out.mkdirs();
       }
@@ -205,7 +210,7 @@ public class jatoo {
         System.out.println("Done.");
       }
 
-      else {
+      else if (in.isDirectory()) {
 
         File[] inImageFiles = in.listFiles(ImageFileFilter.getInstance());
 
@@ -233,6 +238,10 @@ public class jatoo {
         }
 
         System.out.println("Done.");
+      }
+
+      else {
+        throw new IllegalArgumentException("illegal input");
       }
     }
 
