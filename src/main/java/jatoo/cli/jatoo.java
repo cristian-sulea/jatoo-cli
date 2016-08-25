@@ -16,12 +16,15 @@ import org.apache.commons.cli.Options;
 
 import jatoo.image.ImageFileFilter;
 import jatoo.image.ImageUtils;
+import jatoo.resources.ResourcesTexts;
 
 public class jatoo {
 
   public static void main(String[] args) {
     new jatoo(args);
   }
+
+  private final ResourcesTexts texts = new ResourcesTexts(getClass());
 
   private final CommandLineParser parser;
   private final HelpFormatter formatter;
@@ -39,8 +42,8 @@ public class jatoo {
 
     OptionGroup commands = new OptionGroup();
     commands.setRequired(true);
-    commands.addOption(Option.builder("help").desc("display this help").build());
-    commands.addOption(Option.builder("image").desc("work with images").build());
+    commands.addOption(Option.builder("help").desc(texts.getText("option.help.desc")).build());
+    commands.addOption(Option.builder("image").desc(texts.getText("option.image.desc")).build());
 
     Options options = new Options();
     options.addOptionGroup(commands);
@@ -56,7 +59,7 @@ public class jatoo {
       // and work
 
       if (line.hasOption("help")) {
-        printHelp("jatoo", options);
+        printHelp(texts.getText("command"), options);
       }
 
       else if (line.hasOption("image")) {
@@ -69,7 +72,7 @@ public class jatoo {
     }
 
     catch (Throwable e) {
-      printHelp("jatoo", options, e);
+      printHelp(texts.getText("command"), options, e);
       return;
     }
   }
@@ -81,9 +84,9 @@ public class jatoo {
 
     OptionGroup commands = new OptionGroup();
     commands.setRequired(true);
-    commands.addOption(Option.builder("resize").desc("resize the image(s)").build());
-    commands.addOption(Option.builder("crop").desc("crop a rectangle from the specified image(s)").build());
-    commands.addOption(Option.builder("rotate").desc("rotate the image(s)").build());
+    commands.addOption(Option.builder("resize").desc(texts.getText("option.image.resize.desc")).build());
+    commands.addOption(Option.builder("crop").desc(texts.getText("option.image.crop.desc")).build());
+    commands.addOption(Option.builder("rotate").desc(texts.getText("option.image.rotate.desc")).build());
 
     Options options = new Options();
     options.addOptionGroup(commands);
@@ -108,7 +111,7 @@ public class jatoo {
     }
 
     catch (Throwable e) {
-      printHelp("jatoo -image", options, e);
+      printHelp(texts.getText("command") + " -image", options, e);
     }
   }
 
@@ -119,8 +122,8 @@ public class jatoo {
 
     OptionGroup commands = new OptionGroup();
     commands.setRequired(true);
-    commands.addOption(Option.builder("fit").desc("resize to fit inside a rectangle (keeping the original ratio)").build());
-    commands.addOption(Option.builder("fill").desc("resize to fill a rectangle (keeping the original ratio and removing margins from image if needed)").build());
+    commands.addOption(Option.builder("fit").desc(texts.getText("option.image.resize.fit.desc")).build());
+    commands.addOption(Option.builder("fill").desc(texts.getText("option.image.resize.fill.desc")).build());
 
     Options options = new Options();
     options.addOptionGroup(commands);
@@ -145,7 +148,7 @@ public class jatoo {
     }
 
     catch (Throwable e) {
-      printHelp("jatoo -image -resize", options, e);
+      printHelp(texts.getText("command") + " -image -resize", options, e);
     }
   }
 
@@ -155,11 +158,11 @@ public class jatoo {
     // options
 
     Options options = new Options();
-    options.addOption(Option.builder("width").hasArg().required().desc("maximum width of the resized image (in pixels)").build());
-    options.addOption(Option.builder("height").hasArg().required().desc("maximum height of the resized image (in pixels)").build());
-    options.addOption(Option.builder("in").hasArg().required().desc("a file (or a folder) with the image(s) to be resized").build());
-    options.addOption(Option.builder("out").hasArg().required().desc("a folder where the file(s) with the resized image(s) to be created").build());
-    options.addOption(Option.builder("overwrite").desc("overwrite existing file(s)").build());
+    options.addOption(Option.builder("width").hasArg().required().desc(texts.getText("option.image.resize.fit.width.desc")).build());
+    options.addOption(Option.builder("height").hasArg().required().desc(texts.getText("option.image.resize.fit.height.desc")).build());
+    options.addOption(Option.builder("in").hasArg().required().desc(texts.getText("option.image.resize.fit.in.desc")).build());
+    options.addOption(Option.builder("out").hasArg().required().desc(texts.getText("option.image.resize.fit.out.desc")).build());
+    options.addOption(Option.builder("overwrite").desc(texts.getText("option.image.resize.fit.overwrite.desc")).build());
 
     //
     // parse
@@ -199,7 +202,7 @@ public class jatoo {
           }
         }
 
-        System.out.println("Resizing " + inImageFile.getName() + " image...");
+        System.out.println(texts.getText("text.resizing.1.image", inImageFile.getName()));
 
         String formatName = inImageFile.getName().substring(inImageFile.getName().lastIndexOf('.') + 1);
 
@@ -207,7 +210,7 @@ public class jatoo {
         BufferedImage outImage = ImageUtils.resizeToFit(inImage, width, height);
         ImageUtils.write(outImage, formatName, outImageFile);
 
-        System.out.println("Done.");
+        System.out.println(texts.getText("text.done"));
       }
 
       else if (in.isDirectory()) {
@@ -223,7 +226,7 @@ public class jatoo {
           }
         }
 
-        System.out.println("Resizing " + inImageFiles.length + " images...");
+        System.out.println(texts.getText("text.resizing.n.images", inImageFiles.length));
 
         for (File inImageFile : inImageFiles) {
           File outImageFile = new File(out, inImageFile.getName());
@@ -237,7 +240,7 @@ public class jatoo {
           System.out.println(outImageFile.getName());
         }
 
-        System.out.println("Done.");
+        System.out.println(texts.getText("text.done"));
       }
 
       else {
@@ -246,7 +249,7 @@ public class jatoo {
     }
 
     catch (Throwable e) {
-      printHelp("jatoo -image -resize -fit", options, e);
+      printHelp(texts.getText("command") + " -image -resize -fit", options, e);
     }
   }
 

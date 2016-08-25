@@ -3,6 +3,10 @@ package jatoo.cli;
 public class ImageTests {
 
   public static void main(String[] args) {
+    
+//    jatoo.main(
+//        new String[] { "-image", "-resize", "-fit" });
+    
     jatoo.main(
         new String[] {
             "-image", "-resize", "-fit",
