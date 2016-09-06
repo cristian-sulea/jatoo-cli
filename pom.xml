@@ -1,72 +1,72 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
 
-	<parent>
-		<groupId>net.sulea.cristian</groupId>
-		<artifactId>jatoo</artifactId>
-		<relativePath>../jatoo/pom.xml</relativePath>
-		<version>4.1.0</version>
-	</parent>
+  <parent>
+    <groupId>net.sulea.cristian</groupId>
+    <artifactId>jatoo</artifactId>
+    <relativePath>../jatoo/pom.xml</relativePath>
+    <version>4.1.0</version>
+  </parent>
 
-	<artifactId>jatoo-cli</artifactId>
-	<packaging>jar</packaging>
-
-
-	<name>JaToo CLI</name>
-	<description>A Java™ Open Source library created to expose as commands the tools and utilities from the JaToo libraries.</description>
-	<url>http://cristian.sulea.net/projects/jatoo-cli/</url>
-
-	<inceptionYear>2016</inceptionYear>
+  <artifactId>jatoo-cli</artifactId>
+  <packaging>jar</packaging>
 
 
-	<developers>
-		<developer>
-			<id>cristian.sulea</id>
-			<name>Cristian Sulea</name>
-			<email>cristian.sulea.79@gmail.com</email>
-			<url>http://cristian.sulea.net</url>
-		</developer>
-	</developers>
+  <name>JaToo CLI</name>
+  <description>A Java™ Open Source library created to expose as commands the tools and utilities from the JaToo libraries.</description>
+  <url>http://cristian.sulea.net/projects/jatoo-cli/</url>
+
+  <inceptionYear>2016</inceptionYear>
 
 
-	<scm>
-		<connection>scm:git:git@github.com:cristian-sulea/jatoo-cli.git</connection>
-		<developerConnection>scm:git:git@github.com:cristian-sulea/jatoo-cli.git</developerConnection>
-		<url>https://github.com/cristian-sulea/jatoo-cli</url>
-	</scm>
+  <developers>
+    <developer>
+      <id>cristian.sulea</id>
+      <name>Cristian Sulea</name>
+      <email>cristian.sulea.79@gmail.com</email>
+      <url>http://cristian.sulea.net</url>
+    </developer>
+  </developers>
 
 
-	<dependencies>
+  <scm>
+    <connection>scm:git:git@github.com:cristian-sulea/jatoo-cli.git</connection>
+    <developerConnection>scm:git:git@github.com:cristian-sulea/jatoo-cli.git</developerConnection>
+    <url>https://github.com/cristian-sulea/jatoo-cli</url>
+  </scm>
 
-		<dependency>
-			<groupId>net.sulea.cristian</groupId>
-			<artifactId>jatoo-image</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sulea.cristian</groupId>
-			<artifactId>jatoo-resources</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 
-		<dependency>
-			<groupId>commons-cli</groupId>
-			<artifactId>commons-cli</artifactId>
-		</dependency>
+  <dependencies>
 
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-		</dependency>
+    <dependency>
+      <groupId>net.sulea.cristian</groupId>
+      <artifactId>jatoo-image</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.sulea.cristian</groupId>
+      <artifactId>jatoo-resources</artifactId>
+      <version>${project.version}</version>
+    </dependency>
 
-		<dependency>
-			<groupId>org.apache.sanselan</groupId>
-			<artifactId>sanselan</artifactId>
-			<version>0.97-incubator</version>
-		</dependency>
+    <dependency>
+      <groupId>commons-cli</groupId>
+      <artifactId>commons-cli</artifactId>
+    </dependency>
 
-	</dependencies>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.sanselan</groupId>
+      <artifactId>sanselan</artifactId>
+      <version>0.97-incubator</version>
+    </dependency>
+
+  </dependencies>
 
 
 </project>
