@@ -40,14 +40,12 @@
   <dependencies>
 
     <dependency>
-      <groupId>net.sulea.cristian</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>jatoo-image</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>net.sulea.cristian</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>jatoo-resources</artifactId>
-      <version>${project.version}</version>
     </dependency>
 
     <dependency>
