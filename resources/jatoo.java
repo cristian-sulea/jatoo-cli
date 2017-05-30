@@ -227,7 +227,7 @@ public class jatoo {
         BufferedImage outImage = ImageUtils.resizeToFit(inImage, width, height);
         ImageUtils.write(outImage, formatName, outImageFile);
 
-        SIETImageMetadata.copyMetadataTest(inImageFile, outImageFile);
+//        SIETImageMetadata.copyMetadataTest(inImageFile, outImageFile);
 
         System.out.println(texts.getText("text.done"));
       }

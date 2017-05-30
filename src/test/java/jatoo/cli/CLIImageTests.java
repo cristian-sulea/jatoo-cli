@@ -17,21 +17,24 @@
 
 package jatoo.cli;
 
-public class ImageTests {
+public class CLIImageTests {
 
   public static void main(String[] args) {
     
-//    jatoo.main(
-//        new String[] { "-image", "-resize", "-fit" });
+    new JatooCLI().execute(
+        new String[] { "-help" });
     
-    jatoo.main(
-        new String[] {
-            "-image", "-resize", "-fit",
-            "-width", "800",
-            "-height", "600",
-            "-in", "src/test/resources/jatoo/cli/image/20141109144518.jpg",
-            "-out", "target/tests",
-            "-overwrite" });
+//    jatoo.main(
+//        new String[] { "-imagex", "-resizez", "-fitz" });
+    
+//    jatoo.main(
+//        new String[] {
+//            "-image", "-resize", "-fit",
+//            "-width", "800",
+//            "-height", "600",
+//            "-in", "src/test/resources/jatoo/cli/image/20141109144518.jpg",
+//            "-out", "target/tests",
+//            "-overwrite" });
   }
 
 }
