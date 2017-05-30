@@ -46,9 +46,25 @@
 
     <dependency>
       <groupId>net.sulea.cristian</groupId>
+      <artifactId>jatoo-image</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.sulea.cristian</groupId>
       <artifactId>jatoo-resources</artifactId>
       <version>${project.version}</version>
     </dependency>
+
+    <!-- <dependency> -->
+    <!-- <groupId>commons-io</groupId> -->
+    <!-- <artifactId>commons-io</artifactId> -->
+    <!-- </dependency> -->
+
+    <!-- <dependency> -->
+    <!-- <groupId>org.apache.sanselan</groupId> -->
+    <!-- <artifactId>sanselan</artifactId> -->
+    <!-- <version>0.97-incubator</version> -->
+    <!-- </dependency> -->
 
   </dependencies>
 
