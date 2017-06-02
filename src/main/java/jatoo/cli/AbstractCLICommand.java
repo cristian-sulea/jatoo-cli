@@ -25,14 +25,20 @@ import org.apache.commons.cli.ParseException;
 
 import jatoo.resources.ResourcesTexts;
 
-public abstract class AbstractCommand {
+/**
+ * Base class for CLI command implementations.
+ * 
+ * @author <a href="http://cristian.sulea.net" rel="author">Cristian Sulea</a>
+ * @version 1.2, June 2, 2017
+ */
+public abstract class AbstractCLICommand {
 
   private final ResourcesTexts texts = new ResourcesTexts(getClass());
 
   private final CommandLineParser parser;
   private final HelpFormatter formatter;
 
-  public AbstractCommand() {
+  public AbstractCLICommand() {
 
     parser = new DefaultParser();
 
@@ -47,51 +53,50 @@ public abstract class AbstractCommand {
 
   public abstract void execute(final String[] args);
 
-  protected void printHelp(Options options) {
+  protected void printHelp(final Options options) {
     printHelp(null, options);
   }
 
-  protected void printHelp(String command, Options options) {
+  protected void printHelp(final String command, final Options options) {
+
+    String cmdLineSyntax;
 
     if (command == null || command.trim().isEmpty()) {
-      command = "jatoo";
+      cmdLineSyntax = "jatoo";
     }
 
     else {
-      command = "jatoo " + command.trim();
+      cmdLineSyntax = "jatoo " + command.trim();
     }
 
-    formatter.printHelp(command, options, true);
+    formatter.printHelp(cmdLineSyntax, options, true);
   }
 
-  protected void printHelp(Options options, Throwable t) {
+  protected void printHelp(final Options options, final Throwable t) {
     printHelp(null, options, t);
   }
 
-  protected void printHelp(String command, Options options, Throwable t) {
+  protected void printHelp(final String command, final Options options, final Throwable t) {
 
     System.out.println(t.getMessage());
     System.out.println();
 
     printHelp(command, options);
-
-    System.out.println();
-    t.printStackTrace(System.out);
   }
 
-  protected String getText(String key) {
+  protected String getText(final String key) {
     return texts.getText(key);
   }
 
-  protected String getText(String key, Object... arguments) {
+  protected String getText(final String key, final Object... arguments) {
     return texts.getText(key, arguments);
   }
 
-  protected CommandLine parse(Options options, String[] arguments) throws ParseException {
+  protected CommandLine parse(final Options options, final String[] arguments) throws ParseException {
     return parser.parse(options, arguments);
   }
 
-  protected CommandLine parse(Options options, String[] arguments, boolean stopAtNonOption) throws ParseException {
+  protected CommandLine parse(final Options options, final String[] arguments, final boolean stopAtNonOption) throws ParseException {
     return parser.parse(options, arguments, stopAtNonOption);
   }
 

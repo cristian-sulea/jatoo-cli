@@ -16,6 +16,7 @@
 
 package jatoo.cli;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -24,18 +25,24 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionGroup;
 import org.apache.commons.cli.Options;
 
-public class JatooCLI extends AbstractCommand {
+/**
+ * The "jatoo" command for the JaToo CLI project.
+ * 
+ * @author <a href="http://cristian.sulea.net" rel="author">Cristian Sulea</a>
+ * @version 1.2, June 2, 2017
+ */
+public class JatooCLI extends AbstractCLICommand {
 
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
     new JatooCLI().execute(args);
   }
 
-  private final Map<String, AbstractCommand> commands = new LinkedHashMap<>();
+  private final Map<String, AbstractCLICommand> commands = new LinkedHashMap<>();
 
   public JatooCLI() {
-    for (String command : new String[] { "image" }) {
+    for (String command : Arrays.asList("image", "")) {
       try {
-        commands.put(command, (AbstractCommand) Class.forName("jatoo.cli." + command + ".JatooCLICommand").newInstance());
+        commands.put(command, (AbstractCLICommand) Class.forName("jatoo.cli." + command + ".JatooCLICommand").newInstance());
       } catch (Throwable t) {
         commands.put(command, null);
       }
@@ -43,7 +50,7 @@ public class JatooCLI extends AbstractCommand {
   }
 
   @Override
-  public void execute(String[] args) {
+  public void execute(final String[] args) {
 
     //
     // options
@@ -53,8 +60,9 @@ public class JatooCLI extends AbstractCommand {
 
     commandsOptionGroup.addOption(Option.builder("help").desc(getText("option.help.desc")).build());
 
-    for (String option : commands.keySet()) {
-      AbstractCommand command = commands.get(option);
+    for (Map.Entry<String, AbstractCLICommand> entry : commands.entrySet()) {
+      String option = entry.getKey();
+      AbstractCLICommand command = entry.getValue();
 
       if (command == null) {
         continue;
@@ -82,7 +90,8 @@ public class JatooCLI extends AbstractCommand {
 
       else {
 
-        for (String option : commands.keySet()) {
+        for (Map.Entry<String, AbstractCLICommand> entry : commands.entrySet()) {
+          String option = entry.getKey();
 
           if (line.hasOption(option)) {
             commands.get(option).execute(line.getArgs());
