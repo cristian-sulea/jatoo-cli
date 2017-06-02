@@ -26,10 +26,14 @@ import org.apache.commons.cli.Options;
 
 public class JatooCLI extends AbstractCommand {
 
+  public static void main(String[] args) {
+    new JatooCLI().execute(args);
+  }
+
   private final Map<String, AbstractCommand> commands = new LinkedHashMap<>();
 
   public JatooCLI() {
-    for (String command : new String[] { "image", "image2" }) {
+    for (String command : new String[] { "image" }) {
       try {
         commands.put(command, (AbstractCommand) Class.forName("jatoo.cli." + command + ".JatooCLICommand").newInstance());
       } catch (Throwable t) {
