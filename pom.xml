@@ -87,7 +87,6 @@
             </executions>
           </plugin>
 
-
           <plugin>
             <artifactId>maven-resources-plugin</artifactId>
             <executions>
