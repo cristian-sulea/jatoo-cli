@@ -6,7 +6,7 @@
   <outfile>jatoo.exe</outfile>
   <errTitle></errTitle>
   <cmdLine>-image -resize</cmdLine>
-  <chdir>.</chdir>
+  <chdir></chdir>
   <priority>normal</priority>
   <downloadUrl>http://java.com/download</downloadUrl>
   <supportUrl></supportUrl>
@@ -16,7 +16,7 @@
   <icon></icon>
   <classPath>
     <mainClass>jatoo.cli.JatooCLI</mainClass>
-    <cp>lib/*</cp>
+    <cp>%EXEDIR%/lib/*</cp>
   </classPath>
   <jre>
     <path></path>
