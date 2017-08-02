@@ -90,6 +90,9 @@
                   </classPath>
                   <jre>
                     <minVersion>1.8.0</minVersion>
+                    <opts>
+                      <opt>-Dlaunch4j.exedir=%EXEDIR%</opt>
+                    </opts>
                   </jre>
                 </configuration>
               </execution>
